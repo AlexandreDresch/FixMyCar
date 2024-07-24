@@ -8,6 +8,8 @@ import { z } from "zod";
 import CustomFormField from "../custom-form-field";
 import SubmitButton from "../submit-button";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { createUser } from "@/lib/actions/client.actions";
 
 export enum FormFieldType {
   INPUT = "input",
@@ -21,6 +23,7 @@ export enum FormFieldType {
 }
 
 export default function UserForm() {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<z.infer<typeof userSchema>>({
@@ -32,9 +35,24 @@ export default function UserForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof userSchema>) {
+  async function onSubmit({ name, email, phone }: z.infer<typeof userSchema>) {
     setIsLoading(true);
-    console.log(values);
+
+    try {
+      const userData = {
+        name,
+        email,
+        phone,
+      };
+
+      const user = await createUser(userData);
+
+      if (user) {
+        router.push(`/users/${user.$id}/register`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
   return (
     <Form {...form}>
