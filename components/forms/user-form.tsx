@@ -48,7 +48,7 @@ export default function UserForm() {
       const user = await createUser(userData);
 
       if (user) {
-        router.push(`/users/${user.$id}/register`);
+        router.push(`/clients/${user.$id}/register`);
       }
     } catch (error) {
       console.log(error);
@@ -61,24 +61,27 @@ export default function UserForm() {
           <h1 className="header">Hi there</h1>
           <p className="text-dark-700">Schedule your first visit.</p>
         </section>
+
         <CustomFormField
           control={form.control}
           fieldType={FormFieldType.INPUT}
           label="Full Name"
           name="name"
           placeholder="Enter your full name"
-          icon="./assets/icons/user.svg"
+          icon="/assets/icons/user.svg"
           iconAlt="Person Icon"
         />
+
         <CustomFormField
           control={form.control}
           fieldType={FormFieldType.INPUT}
           label="Email"
           name="email"
           placeholder="Enter your email address"
-          icon="./assets/icons/email.svg"
+          icon="/assets/icons/email.svg"
           iconAlt="Email Icon"
         />
+
         <CustomFormField
           control={form.control}
           fieldType={FormFieldType.PHONE_INPUT}
