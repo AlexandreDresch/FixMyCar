@@ -25,3 +25,13 @@ export const createUser = async (client: CreateClientParams) => {
     }
   }
 };
+
+export const getUser = async (clientId: string) => {
+  try {
+    const user = await users.get(clientId);
+
+    return parseStringify(user);
+  } catch (error: any) {
+    console.error(error);
+  }
+}
