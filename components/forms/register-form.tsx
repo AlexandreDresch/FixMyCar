@@ -99,7 +99,7 @@ export default function RegisterForm({ client }: { client: Client }) {
           fieldType={FormFieldType.INPUT}
           label="Address"
           name="address"
-          placeholder="14th Street, Example City"
+          placeholder="14th Street, New York"
         />
 
         <section className="space-y-6">
@@ -107,6 +107,55 @@ export default function RegisterForm({ client }: { client: Client }) {
             <h2 className="sub-header">Vehicle Information</h2>
           </div>
         </section>
+
+        <div className="flex flex-col gap-6 xl:flex-row">
+          <CustomFormField
+            control={form.control}
+            fieldType={FormFieldType.INPUT}
+            label="Make"
+            name="make"
+            placeholder="Honda, Volkswagen, ..."
+          />
+
+          <CustomFormField
+            control={form.control}
+            fieldType={FormFieldType.INPUT}
+            label="Model"
+            name="model"
+            placeholder="Escape, Civic, ..."
+          />
+        </div>
+
+        <div className="flex flex-col gap-6 xl:flex-row">
+          <CustomFormField
+            control={form.control}
+            fieldType={FormFieldType.INPUT}
+            label="Year"
+            name="year"
+            placeholder="2004"
+          />
+
+          <CustomFormField
+            control={form.control}
+            fieldType={FormFieldType.INPUT}
+            label="License Plate"
+            name="license_plate"
+            placeholder="NYC-1234"
+          />
+        </div>
+
+        <section className="space-y-6">
+          <div className="mb-9 space-y-1">
+            <h2 className="sub-header">Consent and Privacy</h2>
+          </div>
+        </section>
+
+        <CustomFormField
+          control={form.control}
+          fieldType={FormFieldType.CHECKBOX}
+          label="I have read and agree to the platform's privacy policies and terms of service."
+          name="consent"
+        />
 
         <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
       </form>
